@@ -1,0 +1,58 @@
+{
+  "name": "ZM Media Dashboard",
+  "short_name": "ZM Media",
+  "description": "Your unified media server command center",
+  "start_url": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
+  "background_color": "#0e0d0c",
+  "theme_color": "#f97316",
+  "orientation": "any",
+  "scope": "/",
+  "categories": ["entertainment", "utilities"],
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/icons/screenshot-desktop.png",
+      "sizes": "1280x800",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/icons/screenshot-mobile.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Library",
+      "url": "/#/library",
+      "description": "Browse your media library"
+    },
+    {
+      "name": "Downloads",
+      "url": "/#/downloads",
+      "description": "View active downloads"
+    },
+    {
+      "name": "Requests",
+      "url": "/#/requests",
+      "description": "Manage media requests"
+    }
+  ]
+}
