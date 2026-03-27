@@ -1,8 +1,8 @@
-version: '3.8'
-
+# For local development / self-hosted (non-Unraid)
+# For Unraid, use the GHCR image directly — see README.
 services:
   media-dashboard:
-    build: .
+    image: ghcr.io/jaywill10/jaywills-media-dashboard:latest
     container_name: jaywills-media-dashboard
     restart: unless-stopped
     ports:
@@ -10,23 +10,23 @@ services:
     volumes:
       - ./data:/app/data
     environment:
-      - NODE_ENV=production
-      - PORT=3000
-      - JWT_SECRET=${JWT_SECRET}
-      - JWT_EXPIRY=${JWT_EXPIRY:-7d}
-      - DB_PATH=/app/data/dashboard.db
-      - SONARR_URL=${SONARR_URL}
-      - SONARR_API_KEY=${SONARR_API_KEY}
-      - RADARR_URL=${RADARR_URL}
-      - RADARR_API_KEY=${RADARR_API_KEY}
-      - OVERSEERR_URL=${OVERSEERR_URL}
-      - OVERSEERR_API_KEY=${OVERSEERR_API_KEY}
-      - SABNZBD_URL=${SABNZBD_URL}
-      - SABNZBD_API_KEY=${SABNZBD_API_KEY}
-      - PLEX_URL=${PLEX_URL}
-      - PLEX_TOKEN=${PLEX_TOKEN}
-      - TAUTULLI_URL=${TAUTULLI_URL}
-      - TAUTULLI_API_KEY=${TAUTULLI_API_KEY}
+      NODE_ENV: production
+      PORT: "3000"
+      JWT_SECRET: ${JWT_SECRET:?JWT_SECRET is required}
+      JWT_EXPIRY: ${JWT_EXPIRY:-7d}
+      DB_PATH: /app/data/dashboard.db
+      SONARR_URL: ${SONARR_URL:-}
+      SONARR_API_KEY: ${SONARR_API_KEY:-}
+      RADARR_URL: ${RADARR_URL:-}
+      RADARR_API_KEY: ${RADARR_API_KEY:-}
+      OVERSEERR_URL: ${OVERSEERR_URL:-}
+      OVERSEERR_API_KEY: ${OVERSEERR_API_KEY:-}
+      SABNZBD_URL: ${SABNZBD_URL:-}
+      SABNZBD_API_KEY: ${SABNZBD_API_KEY:-}
+      PLEX_URL: ${PLEX_URL:-}
+      PLEX_TOKEN: ${PLEX_TOKEN:-}
+      TAUTULLI_URL: ${TAUTULLI_URL:-}
+      TAUTULLI_API_KEY: ${TAUTULLI_API_KEY:-}
     networks:
       - media-network
 

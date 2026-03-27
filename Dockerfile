@@ -1,16 +1,25 @@
-FROM node:20-alpine
+# syntax=docker/dockerfile:1
+FROM node:20-alpine AS base
 
-# Install build dependencies for better-sqlite3
+# Build dependencies for better-sqlite3 native module
 RUN apk add --no-cache python3 make g++
 
 WORKDIR /app
 
+# Install production deps only
 COPY package*.json ./
 RUN npm ci --only=production
 
+# Copy app source
 COPY . .
 
+# Ensure data directory exists (will be mounted as a volume)
 RUN mkdir -p /app/data
+
+# Run as non-root
+RUN addgroup -g 1001 -S nodejs && adduser -S nodejs -u 1001
+RUN chown -R nodejs:nodejs /app
+USER nodejs
 
 EXPOSE 3000
 
